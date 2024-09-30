@@ -1,0 +1,9 @@
+.feedbackBox {
+  margin: 0 auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+}
+.feedbackCount {
+  font-size: 16px;
+}

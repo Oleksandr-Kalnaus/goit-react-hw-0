@@ -1,26 +1,23 @@
-import { useState, useEffect } from "react";
 import Description from "./Description/Description";
 import Options from "./Options/Options";
 import Feedback from "./Feedback/Feedback";
+import { useState, useEffect } from "react";
 import "modern-normalize";
 
 export default function App() {
-  const getFeedback = () => {
-    const savedFeedback = localStorage.getItem("feedback");
-    return savedFeedback
-      ? JSON.parse(savedFeedback)
-      : { good: 0, neutral: 0, bad: 0 };
-  };
-
-  const [feedback, setFeedback] = useState(getFeedback);
+  const [feedback, setFeedback] = useState(() => {
+    const stringifyedFbacks = localStorage.getItem("feedbacks");
+    const parsedFback = JSON.parse(stringifyedFbacks) ?? {
+      good: 0,
+      neutral: 0,
+      bad: 0,
+    };
+    return parsedFback;
+  });
 
   useEffect(() => {
-    localStorage.setItem("feedback", JSON.stringify(feedback));
+    localStorage.setItem(`feedbacks`, JSON.stringify(feedback));
   }, [feedback]);
-
-  const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
-  const positiveFeedbackPercentage =
-    totalFeedback > 0 ? Math.round((feedback.good / totalFeedback) * 100) : 0;
 
   const updateFeedback = (feedbackType) => {
     setFeedback((prevFeedback) => ({
@@ -30,9 +27,20 @@ export default function App() {
   };
 
   const resetFeedback = () => {
-    setFeedback({ good: 0, neutral: 0, bad: 0 });
-    localStorage.removeItem("feedback");
+    const resetFeedbacks = {
+      good: 0,
+      neutral: 0,
+      bad: 0,
+    };
+
+    setFeedback(resetFeedbacks);
+    localStorage.setItem("feedbacks", JSON.stringify(resetFeedbacks));
   };
+
+  const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
+
+  const positiveFeedback =
+    totalFeedback > 0 ? Math.round((feedback.good / totalFeedback) * 100) : 0;
 
   return (
     <>
@@ -46,10 +54,10 @@ export default function App() {
         <Feedback
           feedback={feedback}
           total={totalFeedback}
-          positivePercentage={positiveFeedbackPercentage}
+          posFeedback={positiveFeedback}
         />
       ) : (
-        <p>No feedback given yet.</p>
+        <p>No feedback yet</p>
       )}
     </>
   );

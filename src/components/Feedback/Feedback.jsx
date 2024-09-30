@@ -1,26 +1,15 @@
-import PropTypes from "prop-types";
 import styles from "./Feedback.module.css";
 
-const Feedback = ({ feedback, total, positivePercentage }) => {
+const Feedback = ({ feedback, total, posFeedback }) => {
   return (
-    <div>
-      <p>Good: {feedback.good}</p>
-      <p>Neutral: {feedback.neutral}</p>
-      <p>Bad: {feedback.bad}</p>
-      <p>Total: {total}</p>
-      <p>Positive: {positivePercentage}%</p>
+    <div className={styles.feedbackBox}>
+      <p className={styles.feedbackCount}>Good: {feedback.good}</p>
+      <p className={styles.feedbackCount}>Neutral: {feedback.neutral}</p>
+      <p className={styles.feedbackCount}>Bad: {feedback.bad}</p>
+      <p className={styles.feedbackCount}>Total: {total}</p>
+      <p className={styles.feedbackCount}>Positive: {posFeedback}%</p>
     </div>
   );
-};
-
-Feedback.propTypes = {
-  feedback: PropTypes.shape({
-    good: PropTypes.number.isRequired,
-    neutral: PropTypes.number.isRequired,
-    bad: PropTypes.number.isRequired,
-  }).isRequired,
-  total: PropTypes.number.isRequired,
-  positivePercentage: PropTypes.number.isRequired,
 };
 
 export default Feedback;
