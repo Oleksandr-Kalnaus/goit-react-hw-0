@@ -1,6 +1,7 @@
 import Description from "./Description/Description";
 import Options from "./Options/Options";
 import Feedback from "./Feedback/Feedback";
+import Notification from "./Notification/Notification";
 import { useState, useEffect } from "react";
 import "modern-normalize";
 
@@ -57,16 +58,7 @@ export default function App() {
           posFeedback={positiveFeedback}
         />
       ) : (
-        <p
-          style={{
-            color: "red",
-            fontSize: "18px",
-            fontStyle: "italic",
-            textAlign: "center",
-          }}
-        >
-          No feedback yet
-        </p>
+        <Notification message="No feedback yet" />
       )}
     </>
   );
