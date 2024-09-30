@@ -57,7 +57,16 @@ export default function App() {
           posFeedback={positiveFeedback}
         />
       ) : (
-        <p>No feedback yet</p>
+        <p
+          style={{
+            color: "red",
+            fontSize: "18px",
+            fontStyle: "italic",
+            textAlign: "center",
+          }}
+        >
+          No feedback yet
+        </p>
       )}
     </>
   );

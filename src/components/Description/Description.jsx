@@ -8,11 +8,6 @@ const Description = ({ totalFeedback }) => {
         Please leave your feedback about our service by selecting one of the
         options below.
       </p>
-      {totalFeedback > 0 ? null : (
-        <p className={styles.noFeedbackMessage}>
-          No feedback received yet. Be the first to leave feedback!
-        </p>
-      )}
     </div>
   );
 };

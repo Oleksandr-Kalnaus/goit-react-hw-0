@@ -22,13 +22,3 @@
   font-size: 18px;
   margin-bottom: 10px;
 }
-
-.noFeedbackMessage {
-  min-width: 320px;
-  margin: 0 auto;
-  padding: 10px;
-  font-size: 40px;
-  color: red;
-  font-size: 16px;
-  font-style: italic;
-}
